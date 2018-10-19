@@ -29,6 +29,13 @@ namespace Medical_Shop_MVC.Controllers
             return View();
         }
 
+        public IActionResult Test()
+        {
+            ViewData["Message"] = "This is a test message.";
+
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
