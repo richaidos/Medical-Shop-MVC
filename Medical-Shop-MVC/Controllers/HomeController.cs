@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Medical_Shop_MVC.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace Medical_Shop_MVC.Controllers
 {
@@ -19,6 +20,9 @@ namespace Medical_Shop_MVC.Controllers
 
         public IActionResult About()
         {
+            UserManager<IdentityUser> UserManager;
+               
+
             ViewBag.sessionv = HttpContext.Session.GetString("Testsession");
             ViewData["Message"] = "Your application description page.";
 
