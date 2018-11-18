@@ -1,0 +1,45 @@
+﻿@model Medical_Shop_MVC.Models.Pharmacy
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Pharmacy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PharmName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PharmName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PharmAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PharmAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PharmPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PharmPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Time_at)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Time_at)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PharmID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

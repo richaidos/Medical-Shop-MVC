@@ -1,0 +1,42 @@
+﻿@model Medical_Shop_MVC.Models.Pharmacy
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pharmacy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PharmName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PharmName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PharmAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PharmAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PharmPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PharmPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Time_at)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Time_at)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PharmID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

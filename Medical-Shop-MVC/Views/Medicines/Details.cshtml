@@ -1,0 +1,66 @@
+﻿@model Medical_Shop_MVC.Models.Medicine
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Medicine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicineCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MedicineCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Img)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Use_in_case)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Use_in_case)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contradication)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contradication)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MedicineID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
