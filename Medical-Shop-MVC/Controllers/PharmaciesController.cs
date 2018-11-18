@@ -9,22 +9,22 @@ using Medical_Shop_MVC.Models;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    public class MedicinesController : Controller
+    public class PharmaciesController : Controller
     {
         private readonly MEDContext _context;
 
-        public MedicinesController(MEDContext context)
+        public PharmaciesController(MEDContext context)
         {
             _context = context;
         }
 
-        // GET: Medicines
+        // GET: Pharmacies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Medicine.ToListAsync());
+            return View(await _context.Pharmacy.ToListAsync());
         }
 
-        // GET: Medicines/Details/5
+        // GET: Pharmacies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace Medical_Shop_MVC.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine
-                .FirstOrDefaultAsync(m => m.MedicineID == id);
-            if (medicine == null)
+            var pharmacy = await _context.Pharmacy
+                .FirstOrDefaultAsync(m => m.PharmID == id);
+            if (pharmacy == null)
             {
                 return NotFound();
             }
 
-            return View(medicine);
+            return View(pharmacy);
         }
 
-        // GET: Medicines/Create
+        // GET: Pharmacies/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Medicines/Create
+        // POST: Pharmacies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MedicineID,Name,Description,Quantity,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
+        public async Task<IActionResult> Create([Bind("PharmID,PharmName,PharmAddress,PharmPhone,Time_at")] Pharmacy pharmacy)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(medicine);
+                _context.Add(pharmacy);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+            return View(pharmacy);
         }
 
-        // GET: Medicines/Edit/5
+        // GET: Pharmacies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Medical_Shop_MVC.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine.FindAsync(id);
-            if (medicine == null)
+            var pharmacy = await _context.Pharmacy.FindAsync(id);
+            if (pharmacy == null)
             {
                 return NotFound();
             }
-            return View(medicine);
+            return View(pharmacy);
         }
 
-        // POST: Medicines/Edit/5
+        // POST: Pharmacies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MedicineID,Name,Description,Quantity,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
+        public async Task<IActionResult> Edit(int id, [Bind("PharmID,PharmName,PharmAddress,PharmPhone,Time_at")] Pharmacy pharmacy)
         {
-            if (id != medicine.MedicineID)
+            if (id != pharmacy.PharmID)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Medical_Shop_MVC.Controllers
             {
                 try
                 {
-                    _context.Update(medicine);
+                    _context.Update(pharmacy);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MedicineExists(medicine.MedicineID))
+                    if (!PharmacyExists(pharmacy.PharmID))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Medical_Shop_MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+            return View(pharmacy);
         }
 
-        // GET: Medicines/Delete/5
+        // GET: Pharmacies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace Medical_Shop_MVC.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine
-                .FirstOrDefaultAsync(m => m.MedicineID == id);
-            if (medicine == null)
+            var pharmacy = await _context.Pharmacy
+                .FirstOrDefaultAsync(m => m.PharmID == id);
+            if (pharmacy == null)
             {
                 return NotFound();
             }
 
-            return View(medicine);
+            return View(pharmacy);
         }
 
-        // POST: Medicines/Delete/5
+        // POST: Pharmacies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var medicine = await _context.Medicine.FindAsync(id);
-            _context.Medicine.Remove(medicine);
+            var pharmacy = await _context.Pharmacy.FindAsync(id);
+            _context.Pharmacy.Remove(pharmacy);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MedicineExists(int id)
+        private bool PharmacyExists(int id)
         {
-            return _context.Medicine.Any(e => e.MedicineID == id);
+            return _context.Pharmacy.Any(e => e.PharmID == id);
         }
     }
 }

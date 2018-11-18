@@ -9,22 +9,22 @@ using Medical_Shop_MVC.Models;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    public class MedicinesController : Controller
+    public class SpecializationsController : Controller
     {
         private readonly MEDContext _context;
 
-        public MedicinesController(MEDContext context)
+        public SpecializationsController(MEDContext context)
         {
             _context = context;
         }
 
-        // GET: Medicines
+        // GET: Specializations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Medicine.ToListAsync());
+            return View(await _context.Specialization.ToListAsync());
         }
 
-        // GET: Medicines/Details/5
+        // GET: Specializations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace Medical_Shop_MVC.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine
-                .FirstOrDefaultAsync(m => m.MedicineID == id);
-            if (medicine == null)
+            var specialization = await _context.Specialization
+                .FirstOrDefaultAsync(m => m.SpecID == id);
+            if (specialization == null)
             {
                 return NotFound();
             }
 
-            return View(medicine);
+            return View(specialization);
         }
 
-        // GET: Medicines/Create
+        // GET: Specializations/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Medicines/Create
+        // POST: Specializations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MedicineID,Name,Description,Quantity,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
+        public async Task<IActionResult> Create([Bind("SpecID,SpecName,SpecDescription")] Specialization specialization)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(medicine);
+                _context.Add(specialization);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+            return View(specialization);
         }
 
-        // GET: Medicines/Edit/5
+        // GET: Specializations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Medical_Shop_MVC.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine.FindAsync(id);
-            if (medicine == null)
+            var specialization = await _context.Specialization.FindAsync(id);
+            if (specialization == null)
             {
                 return NotFound();
             }
-            return View(medicine);
+            return View(specialization);
         }
 
-        // POST: Medicines/Edit/5
+        // POST: Specializations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MedicineID,Name,Description,Quantity,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
+        public async Task<IActionResult> Edit(int id, [Bind("SpecID,SpecName,SpecDescription")] Specialization specialization)
         {
-            if (id != medicine.MedicineID)
+            if (id != specialization.SpecID)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Medical_Shop_MVC.Controllers
             {
                 try
                 {
-                    _context.Update(medicine);
+                    _context.Update(specialization);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MedicineExists(medicine.MedicineID))
+                    if (!SpecializationExists(specialization.SpecID))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Medical_Shop_MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+            return View(specialization);
         }
 
-        // GET: Medicines/Delete/5
+        // GET: Specializations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace Medical_Shop_MVC.Controllers
                 return NotFound();
             }
 
-            var medicine = await _context.Medicine
-                .FirstOrDefaultAsync(m => m.MedicineID == id);
-            if (medicine == null)
+            var specialization = await _context.Specialization
+                .FirstOrDefaultAsync(m => m.SpecID == id);
+            if (specialization == null)
             {
                 return NotFound();
             }
 
-            return View(medicine);
+            return View(specialization);
         }
 
-        // POST: Medicines/Delete/5
+        // POST: Specializations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var medicine = await _context.Medicine.FindAsync(id);
-            _context.Medicine.Remove(medicine);
+            var specialization = await _context.Specialization.FindAsync(id);
+            _context.Specialization.Remove(specialization);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MedicineExists(int id)
+        private bool SpecializationExists(int id)
         {
-            return _context.Medicine.Any(e => e.MedicineID == id);
+            return _context.Specialization.Any(e => e.SpecID == id);
         }
     }
 }

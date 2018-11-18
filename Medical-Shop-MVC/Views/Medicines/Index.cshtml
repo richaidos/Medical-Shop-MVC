@@ -24,6 +24,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.MedicineCode)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Use_in_case)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contradication)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,6 +53,18 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MedicineCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Img)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Use_in_case)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contradication)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MedicineID">Edit</a> |
