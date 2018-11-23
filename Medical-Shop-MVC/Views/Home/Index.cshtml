@@ -3,6 +3,7 @@
 }
 
 <div class="container">
+    <br>
     <b>Search by:</b>
     <select id="SearchBy">
         <option value="Medecine">Лекарства</option>
@@ -12,6 +13,8 @@
 
     </select><br /><br />
     <label>Search:</label> @Html.TextBox("Search") <br />
+    <hr>
+    
 
 </div>
 <div class="container">
@@ -127,11 +130,11 @@
                         if (SearchBy == "Medecine") {
                             console.log(result);
                             $.each(result, function (index, value) {
-                                var Data = "<p>ID:" +
-                                    value.medicineID +
-                                    " Name: " +
-                                    value.name +
-                                    "</p>";
+                                var Data = 
+                                    "<b>Name: " + value.name + "</b><br>" + 
+                                    "Description: " + value.description + "<br>" +
+                                    "Price: " + value.price + "тг" + "<br><hr>"
+                                "</p>";
                                 SearchResult.append(Data);
                             });
                             /*
@@ -141,10 +144,39 @@
                             });
                             */
                         } else if (SearchBy == "Doctor") {
+                            $.each(result, function (index, value) {
+                                var Data =
+                                    "<b>Name: " + value.doctorName + "<br>" +
+                                    "Surname: " + value.doctorSurname + "</b><br>" +
+                                    "Specialization: " + value.doctorType.specName + "<br>" +
+                                    "Descroption: " + value.doctorDescription + "<br>" +
+                                    "Enterprise: " + value.doctorEnterprise.medName + "<br>" +
+                                    "Price: " + value.price + "тг" + "<br><hr>"
+                                "</p>";
+                                SearchResult.append(Data);
+                            });
                             console.log(result);
                         } else if (SearchBy == "Pharmacy") {
+                            $.each(result, function (index, value) {
+                                var Data =
+                                    "<b>Name: " + value.pharmName + "</b><br>" +
+                                    "Address: " + value.pharmAddress + "<br>" +
+                                    "Phone: " + value.pharmPhone + "<br>" +
+                                    "Working hours: " + value.time_at + "<br><hr>"
+                                "</p>";
+                                SearchResult.append(Data);
+                            });
                             console.log(result);
                         } else if (SearchBy == "MedEnterprise") {
+                            $.each(result, function (index, value) {
+                                var Data =
+                                    "<b>Name: " + value.medName + "</b><br>" +
+                                    "Address: " + value.medAddress + "<br>" +
+                                    "Description: " + value.medDescription + "<br>" +
+                                    "Working hours: " + value.time_at + "<br><hr>"
+                                "</p>";
+                                SearchResult.append(Data);
+                            });
                             console.log(result);
                         }
 
