@@ -92,6 +92,7 @@ namespace Medical_Shop_MVC
             services.AddMvc();
             services.AddDistributedMemoryCache();
             services.AddSession();
+            
 
             services.AddDbContext<MEDContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MEDContext")));
@@ -118,7 +119,6 @@ namespace Medical_Shop_MVC
             app.UseAuthentication();
 
             app.UseSession();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

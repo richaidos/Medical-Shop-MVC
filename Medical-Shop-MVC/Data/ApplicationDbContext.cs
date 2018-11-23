@@ -8,6 +8,8 @@ namespace Medical_Shop_MVC.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

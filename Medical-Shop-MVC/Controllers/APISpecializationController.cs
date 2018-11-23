@@ -9,58 +9,58 @@ using Medical_Shop_MVC.Models;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/specialization")]
     [ApiController]
-    public class APIController : ControllerBase
+    public class APISpecializationController : ControllerBase
     {
         private readonly MEDContext _context;
 
-        public APIController(MEDContext context)
+        public APISpecializationController(MEDContext context)
         {
             _context = context;
         }
 
-        // GET: api/API
+        // GET: api/specialization
         [HttpGet]
-        public IEnumerable<Medicine> GetMedicine()
+        public IEnumerable<Specialization> GetSpecialization()
         {
-            return _context.Medicine;
+            return _context.Specialization;
         }
 
-        // GET: api/API/5
+        // GET: api/specialization/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMedicine([FromRoute] int id)
+        public async Task<IActionResult> GetSpecialization([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var medicine = await _context.Medicine.FindAsync(id);
+            var specialization = await _context.Specialization.FindAsync(id);
 
-            if (medicine == null)
+            if (specialization == null)
             {
                 return NotFound();
             }
 
-            return Ok(medicine);
+            return Ok(specialization);
         }
 
-        // PUT: api/API/5
+        // PUT: api/specialization/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMedicine([FromRoute] int id, [FromBody] Medicine medicine)
+        public async Task<IActionResult> PutSpecialization([FromRoute] int id, [FromBody] Specialization specialization)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != medicine.MedicineID)
+            if (id != specialization.SpecID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(medicine).State = EntityState.Modified;
+            _context.Entry(specialization).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Medical_Shop_MVC.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MedicineExists(id))
+                if (!SpecializationExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace Medical_Shop_MVC.Controllers
             return NoContent();
         }
 
-        // POST: api/API
+        // POST: api/specialization
         [HttpPost]
-        public async Task<IActionResult> PostMedicine([FromBody] Medicine medicine)
+        public async Task<IActionResult> PostSpecialization([FromBody] Specialization specialization)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Medicine.Add(medicine);
+            _context.Specialization.Add(specialization);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMedicine", new { id = medicine.MedicineID }, medicine);
+            return CreatedAtAction("GetSpecialization", new { id = specialization.SpecID }, specialization);
         }
 
-        // DELETE: api/API/5
+        // DELETE: api/specialization/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMedicine([FromRoute] int id)
+        public async Task<IActionResult> DeleteSpecialization([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var medicine = await _context.Medicine.FindAsync(id);
-            if (medicine == null)
+            var specialization = await _context.Specialization.FindAsync(id);
+            if (specialization == null)
             {
                 return NotFound();
             }
 
-            _context.Medicine.Remove(medicine);
+            _context.Specialization.Remove(specialization);
             await _context.SaveChangesAsync();
 
-            return Ok(medicine);
+            return Ok(specialization);
         }
 
-        private bool MedicineExists(int id)
+        private bool SpecializationExists(int id)
         {
-            return _context.Medicine.Any(e => e.MedicineID == id);
+            return _context.Specialization.Any(e => e.SpecID == id);
         }
     }
 }
