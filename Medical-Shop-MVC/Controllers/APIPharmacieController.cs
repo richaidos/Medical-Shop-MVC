@@ -9,58 +9,58 @@ using Medical_Shop_MVC.Models;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Route("api/medicine")]
+    [Route("api/pharmacie")]
     [ApiController]
-    public class APIMedicinesController : ControllerBase
+    public class APIPharmacieController : ControllerBase
     {
         private readonly MEDContext _context;
 
-        public APIMedicinesController(MEDContext context)
+        public APIPharmacieController(MEDContext context)
         {
             _context = context;
         }
 
-        // GET: api/medicine
+        // GET: api/Pharmacie
         [HttpGet]
-        public IEnumerable<Medicine> GetMedicine()
+        public IEnumerable<Pharmacy> GetPharmacy()
         {
-            return _context.Medicine;
+            return _context.Pharmacy;
         }
 
-        // GET: api/medicine/5
+        // GET: api/Pharmacie/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMedicine([FromRoute] int id)
+        public async Task<IActionResult> GetPharmacy([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var medicine = await _context.Medicine.FindAsync(id);
+            var pharmacy = await _context.Pharmacy.FindAsync(id);
 
-            if (medicine == null)
+            if (pharmacy == null)
             {
                 return NotFound();
             }
 
-            return Ok(medicine);
+            return Ok(pharmacy);
         }
 
-        // PUT: api/medicine/5
+        // PUT: api/Pharmacie/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMedicine([FromRoute] int id, [FromBody] Medicine medicine)
+        public async Task<IActionResult> PutPharmacy([FromRoute] int id, [FromBody] Pharmacy pharmacy)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != medicine.MedicineID)
+            if (id != pharmacy.PharmID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(medicine).State = EntityState.Modified;
+            _context.Entry(pharmacy).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Medical_Shop_MVC.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MedicineExists(id))
+                if (!PharmacyExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,45 @@ namespace Medical_Shop_MVC.Controllers
             return NoContent();
         }
 
-        // POST: api/medicine
+        // POST: api/Pharmacie
         [HttpPost]
-        public async Task<IActionResult> PostMedicine([FromBody] Medicine medicine)
+        public async Task<IActionResult> PostPharmacy([FromBody] Pharmacy pharmacy)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            _context.Medicine.Add(medicine);
+
+            _context.Pharmacy.Add(pharmacy);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMedicine", new { id = medicine.MedicineID }, medicine);
+            return CreatedAtAction("GetPharmacy", new { id = pharmacy.PharmID }, pharmacy);
         }
 
-        // DELETE: api/medicine/5
+        // DELETE: api/Pharmacie/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMedicine([FromRoute] int id)
+        public async Task<IActionResult> DeletePharmacy([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var medicine = await _context.Medicine.FindAsync(id);
-            if (medicine == null)
+            var pharmacy = await _context.Pharmacy.FindAsync(id);
+            if (pharmacy == null)
             {
                 return NotFound();
             }
 
-            _context.Medicine.Remove(medicine);
+            _context.Pharmacy.Remove(pharmacy);
             await _context.SaveChangesAsync();
 
-            return Ok(medicine);
+            return Ok(pharmacy);
         }
 
-        private bool MedicineExists(int id)
+        private bool PharmacyExists(int id)
         {
-            return _context.Medicine.Any(e => e.MedicineID == id);
+            return _context.Pharmacy.Any(e => e.PharmID == id);
         }
     }
 }
