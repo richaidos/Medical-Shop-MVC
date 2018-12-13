@@ -2,6 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="container">
+    <br>
+    <b>Search by:</b>
+    <select id="SearchBy">
+        <option value="Medecine">Лекарства</option>
+        <option value="Doctor">Доктор</option>
+        <option value="Pharmacy">Аптеки</option>
+        <option value="MedEnterprise">Мед. учереждениям</option>
+
+    </select><br /><br />
+    <label>Search:</label> @Html.TextBox("Search") <br />
+    <hr>
+    
+
+</div>
+<div class="container">
+    <div id="SearchResult"></div>
+</div>
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -92,3 +111,81 @@
         </ul>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#Search").keyup(function () {
+            var SearchBy = $("#SearchBy").val();
+            var SearchValue = $("#Search").val();
+            var SearchResult = $("#SearchResult");
+            SearchResult.html("");
+
+            $.ajax({
+                type: "post",
+                url: "/Home/GetSearchingData?SearchBy=" + SearchBy + "&SearchValue=" + SearchValue,
+                contentType: "html",
+                success: function (result) {
+                    if (result.length == 0) {
+                        SearchResult.append('<span style="color: red;">No Match Data</span>');
+                    } else {
+                        if (SearchBy == "Medecine") {
+                            console.log(result);
+                            $.each(result, function (index, value) {
+                                var Data = 
+                                    "<b>Name: " + value.name + "</b><br>" + 
+                                    "Description: " + value.description + "<br>" +
+                                    "Price: " + value.price + "тг" + "<br><hr>"
+                                "</p>";
+                                SearchResult.append(Data);
+                            });
+                            /*
+                            $.each(result, function (index, value) {
+                                SearchResult.append('<span style="color:green;">' + obj + '</span>');
+                                Console.log(value);
+                            });
+                            */
+                        } else if (SearchBy == "Doctor") {
+                            $.each(result, function (index, value) {
+                                var Data =
+                                    "<b>Name: " + value.doctorName + "<br>" +
+                                    "Surname: " + value.doctorSurname + "</b><br>" +
+                                    "Specialization: " + value.doctorType.specName + "<br>" +
+                                    "Descroption: " + value.doctorDescription + "<br>" +
+                                    "Enterprise: " + value.doctorEnterprise.medName + "<br>" +
+                                    "Price: " + value.price + "тг" + "<br><hr>"
+                                "</p>";
+                                SearchResult.append(Data);
+                            });
+                            console.log(result);
+                        } else if (SearchBy == "Pharmacy") {
+                            $.each(result, function (index, value) {
+                                var Data =
+                                    "<b>Name: " + value.pharmName + "</b><br>" +
+                                    "Address: " + value.pharmAddress + "<br>" +
+                                    "Phone: " + value.pharmPhone + "<br>" +
+                                    "Working hours: " + value.time_at + "<br><hr>"
+                                "</p>";
+                                SearchResult.append(Data);
+                            });
+                            console.log(result);
+                        } else if (SearchBy == "MedEnterprise") {
+                            $.each(result, function (index, value) {
+                                var Data =
+                                    "<b>Name: " + value.medName + "</b><br>" +
+                                    "Address: " + value.medAddress + "<br>" +
+                                    "Description: " + value.medDescription + "<br>" +
+                                    "Working hours: " + value.time_at + "<br><hr>"
+                                "</p>";
+                                SearchResult.append(Data);
+                            });
+                            console.log(result);
+                        }
+
+
+                    }
+                }
+
+            })
+
+        });
+    });
+</script>
