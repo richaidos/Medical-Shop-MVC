@@ -138,7 +138,7 @@ namespace Medical_Shop_MVC.Controllers
 
         public IActionResult Test()
         {
-            ViewData["Message"] = "This is a test message.";
+            ViewData["Message"] = "Abracadabra";
 
             return View();
         }

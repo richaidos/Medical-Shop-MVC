@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Medical_Shop_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Medical_Shop_MVC.Controllers
 {
+    [Authorize]
     public class DoctorsController : Controller
     {
         private readonly MEDContext _context;
@@ -17,10 +19,20 @@ namespace Medical_Shop_MVC.Controllers
         {
             _context = context;
         }
+               
 
         // GET: Doctors
         public async Task<IActionResult> Index()
         {
+            /*
+            var check = User.Identity.IsAuthenticated;
+            if (!check)
+            {
+                return RedirectToRoute("default", new { controller = "Identity", action = "Account/Login" });
+                //return RedirectToAction("Login", "Identity/Account", new { area = "" });
+            }
+            */
+
             return View(await _context.Doctors.ToListAsync());
         }
 
@@ -51,6 +63,7 @@ namespace Medical_Shop_MVC.Controllers
         // GET: Doctors/Create
         public async Task<IActionResult> Create()
         {
+
             var specializationList = await _context.Specialization.ToListAsync();
             var enterpriseList = await _context.Medical_Enterprise.ToListAsync();
             ViewBag.spList = specializationList;
@@ -75,7 +88,7 @@ namespace Medical_Shop_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DoctorID,DoctorName,DoctorSurname,DoctorDescription,DoctorPhone,Price,doctorType,DoctorEnterprise")] Doctors doctors)
         {
-            
+
             var id = Int32.Parse(Request.Form["doctorType"]);
             var id2 = Int32.Parse(Request.Form["DoctorEnterprise"]); 
             //System.Diagnostics.Debug.WriteLine("ID1: "+id+" ID2: "+id2);
@@ -96,6 +109,8 @@ namespace Medical_Shop_MVC.Controllers
         // GET: Doctors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
+
             var specializationList = await _context.Specialization.ToListAsync();
             var enterpriseList = await _context.Medical_Enterprise.ToListAsync();
             ViewBag.spList = specializationList;
@@ -122,6 +137,7 @@ namespace Medical_Shop_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DoctorID,DoctorName,DoctorSurname,DoctorDescription,DoctorPhone,Price,doctorType,DoctorEnterprise")] Doctors doctors)
         {
+
             if (id != doctors.DoctorID)
             {
                 return NotFound();
@@ -161,6 +177,8 @@ namespace Medical_Shop_MVC.Controllers
         // GET: Doctors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
+
             if (id == null)
             {
                 return NotFound();
@@ -181,6 +199,8 @@ namespace Medical_Shop_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
+
             var doctors = await _context.Doctors.FindAsync(id);
             _context.Doctors.Remove(doctors);
             await _context.SaveChangesAsync();

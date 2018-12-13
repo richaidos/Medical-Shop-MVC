@@ -3,14 +3,16 @@ using System;
 using Medical_Shop_MVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Medical_Shop_MVC.Migrations
 {
     [DbContext(typeof(MEDContext))]
-    partial class MEDContextModelSnapshot : ModelSnapshot
+    [Migration("20181118105051_sometext")]
+    partial class sometext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
