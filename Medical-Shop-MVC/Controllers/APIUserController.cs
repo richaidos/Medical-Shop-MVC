@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class APIUserController : ControllerBase
     {
@@ -18,36 +18,41 @@ namespace Medical_Shop_MVC.Controllers
             _context = context;
         }
 
-        // GET: api/APIUser
+        /*
+        // GET: api/user
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
+        */
 
-        // GET: api/APIUser/5
+        // GET: api/user/5
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/APIUser
+        // POST: api/user
         [HttpPost]
         public void Post([FromBody] string value)
         {
+
         }
 
-        // PUT: api/APIUser/5
+        // PUT: api/user/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
         }
     }
 }

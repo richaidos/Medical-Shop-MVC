@@ -9,7 +9,7 @@ using Medical_Shop_MVC.Models;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Route("api/Pharmacie")]
+    [Route("api/pharmacie")]
     [ApiController]
     public class APIPharmacieController : ControllerBase
     {
