@@ -66,14 +66,19 @@ namespace Medical_Shop_MVC.Controllers
                             Console.WriteLine("{0} Is not found a Doctor:" + SearchValue);
                         }
                         return Json(listOfDoctors);
-                    } else if (SearchBy == "Pharmacy") {
+
+                    }
+                    else if (SearchBy == "Pharmacy")
+                    {
                         List<Pharmacy> listOfPharmacy = new List<Pharmacy>();
                         try
                         {
                             listOfPharmacy = _context2.Pharmacy.Where(x => x.PharmName.Contains(SearchValue) || x.PharmAddress.Contains(SearchValue) || x.PharmPhone.Contains(SearchValue)).ToList();
-                            
+
+
                         }
-                        catch (FormatException) {
+                        catch (FormatException)
+                        {
                             Console.WriteLine("{0} Is not found a Pharmacy:" + SearchValue);
                         }
                         return Json(listOfPharmacy);
@@ -91,7 +96,9 @@ namespace Medical_Shop_MVC.Controllers
                             Console.WriteLine("{0} Is not found a MedEnterprise:" + SearchValue);
                         }
                         return Json(listOfMedEnt);
-                    }else
+
+                    }
+                    else
                     {
                         return Json("Not Found");
                     }
@@ -134,7 +141,7 @@ namespace Medical_Shop_MVC.Controllers
 
         public IActionResult Test()
         {
-            ViewData["Message"] = "This is a test message.";
+            ViewData["Message"] = "Abracadabra";
 
             return View();
         }
