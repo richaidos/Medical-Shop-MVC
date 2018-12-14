@@ -2,6 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <section class="bg-primary" id="about">
     <div class="container">
         <div class="row">
@@ -16,6 +17,7 @@
                 <hr class="light my-4">
                 <p class="text-faded mb-4">To hold my teacher in this art equal to my own parents; to make him partner in my livelihood; when he is in need of money to share mine with him; to consider his family as my own brothers, and to teach them this art, if they want to learn it, without fee or indenture; to impart precept, oral instruction, and all other instruction to my own sons, the sons of my teacher, and to indentured pupils who have taken the physician’s oath, but to nobody else.</p>
                 <input type="text" class="btn btn-light btn-xl js-scroll-trigger"  placeholder="Search" @{ @Html.TextBox("Search") } 
+
             </div>
         </div>
     </div>
@@ -136,9 +138,8 @@
             </div>
         </div>
     </div>
+
 </section>
-
-
 
 <script>
     $(document).ready(function () {
@@ -159,6 +160,7 @@
                         if (SearchBy == "Medecine") {
                             console.log(result);
                             $.each(result, function (index, value) {
+
                                 var Data =
                                     "<div class='col-lg - 3 col - md - 6 text - center'><h3 class=\"mb-3\">Name: " + value.name + "</h3><br>" +
                                     "<h4 class=\"mb-4\">Description: </p4> <p class=\"text-muted mb-0\">" + value.description + "</p><br>" +
@@ -203,7 +205,6 @@
                             });
                             console.log(result);
                         }
-
 
                     }
                 }

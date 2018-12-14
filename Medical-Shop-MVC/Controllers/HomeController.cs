@@ -66,6 +66,7 @@ namespace Medical_Shop_MVC.Controllers
                             Console.WriteLine("{0} Is not found a Doctor:" + SearchValue);
                         }
                         return Json(listOfDoctors);
+
                     }
                     else if (SearchBy == "Pharmacy")
                     {
@@ -73,6 +74,7 @@ namespace Medical_Shop_MVC.Controllers
                         try
                         {
                             listOfPharmacy = _context2.Pharmacy.Where(x => x.PharmName.Contains(SearchValue) || x.PharmAddress.Contains(SearchValue) || x.PharmPhone.Contains(SearchValue)).ToList();
+
 
                         }
                         catch (FormatException)
@@ -94,6 +96,7 @@ namespace Medical_Shop_MVC.Controllers
                             Console.WriteLine("{0} Is not found a MedEnterprise:" + SearchValue);
                         }
                         return Json(listOfMedEnt);
+
                     }
                     else
                     {
