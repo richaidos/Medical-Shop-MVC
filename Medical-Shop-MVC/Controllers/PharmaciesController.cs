@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Authorize]
+    
     public class PharmaciesController : Controller
     {
         private readonly MEDContext _context;
@@ -45,6 +45,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Pharmacies/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +56,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("PharmID,PharmName,PharmAddress,PharmPhone,Time_at")] Pharmacy pharmacy)
         {
             if (ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Pharmacies/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,6 +90,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("PharmID,PharmName,PharmAddress,PharmPhone,Time_at")] Pharmacy pharmacy)
         {
             if (id != pharmacy.PharmID)
@@ -118,6 +122,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Pharmacies/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,6 +143,7 @@ namespace Medical_Shop_MVC.Controllers
         // POST: Pharmacies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var pharmacy = await _context.Pharmacy.FindAsync(id);

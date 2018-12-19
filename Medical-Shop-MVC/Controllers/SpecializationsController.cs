@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Authorize]
+    
     public class SpecializationsController : Controller
     {
         private readonly MEDContext _context;
@@ -45,6 +45,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Specializations/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +56,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("SpecID,SpecName,SpecDescription")] Specialization specialization)
         {
             if (ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Specializations/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +89,7 @@ namespace Medical_Shop_MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("SpecID,SpecName,SpecDescription")] Specialization specialization)
         {
@@ -118,6 +122,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Specializations/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +141,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // POST: Specializations/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

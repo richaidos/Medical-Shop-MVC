@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Authorize]
+    
     public class DoctorsController : Controller
     {
         private readonly MEDContext _context;
@@ -61,6 +61,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Doctors/Create
+        [Authorize]
         public async Task<IActionResult> Create()
         {
 
@@ -86,6 +87,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("DoctorID,DoctorName,DoctorSurname,DoctorDescription,DoctorPhone,Price,doctorType,DoctorEnterprise")] Doctors doctors)
         {
 
@@ -107,6 +109,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Doctors/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
 
@@ -135,6 +138,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("DoctorID,DoctorName,DoctorSurname,DoctorDescription,DoctorPhone,Price,doctorType,DoctorEnterprise")] Doctors doctors)
         {
 
@@ -175,6 +179,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Doctors/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
 
@@ -197,6 +202,7 @@ namespace Medical_Shop_MVC.Controllers
         // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
 

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Authorize]
+    
     public class MedicinesController : Controller
     {
         private readonly MEDContext _context;
@@ -45,6 +45,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Medicines/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +56,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("MedicineID,Name,Description,Quantity,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
         {
             if (ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Medicines/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,6 +90,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("MedicineID,Name,Description,Quantity,MedicineCode,Img,Use_in_case,Contradication,Price")] Medicine medicine)
         {
             if (id != medicine.MedicineID)
@@ -118,6 +122,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Medicines/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +141,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // POST: Medicines/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
