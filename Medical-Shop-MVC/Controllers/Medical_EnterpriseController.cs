@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Medical_Shop_MVC.Controllers
 {
-    [Authorize]
+    
     public class Medical_EnterpriseController : Controller
     {
         private readonly MEDContext _context;
@@ -45,6 +45,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Medical_Enterprise/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +56,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("MedID,MedName,MedDescription,MedAddress,Time_at")] Medical_Enterprise medical_Enterprise)
         {
             if (ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Medical_Enterprise/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,6 +90,7 @@ namespace Medical_Shop_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("MedID,MedName,MedDescription,MedAddress,Time_at")] Medical_Enterprise medical_Enterprise)
         {
             if (id != medical_Enterprise.MedID)
@@ -118,6 +122,7 @@ namespace Medical_Shop_MVC.Controllers
         }
 
         // GET: Medical_Enterprise/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,6 +143,7 @@ namespace Medical_Shop_MVC.Controllers
         // POST: Medical_Enterprise/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var medical_Enterprise = await _context.Medical_Enterprise.FindAsync(id);
