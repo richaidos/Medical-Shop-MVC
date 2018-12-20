@@ -5,9 +5,9 @@
 {
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
         
-            <li class="nav-item">
+            @*<li class="nav-item">
                 <a class="nav-link js-scroll-trigger" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
+            </li>*@
             <li class="nav-item">
                 <button type="submit" class="btn btn-primary btn-xl js-scroll-trigger">Logout</button>
             </li>

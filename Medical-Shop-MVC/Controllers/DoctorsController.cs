@@ -32,7 +32,8 @@ namespace Medical_Shop_MVC.Controllers
                 //return RedirectToAction("Login", "Identity/Account", new { area = "" });
             }
             */
-
+            var docsize = _context.Doctors.Count();
+            ViewBag.doccount = docsize;
             return View(await _context.Doctors.ToListAsync());
         }
 

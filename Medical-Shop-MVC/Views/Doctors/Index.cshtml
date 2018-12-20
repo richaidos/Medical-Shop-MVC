@@ -2,9 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
+    var docsize = ViewBag.doccount;
 }
 
-<h2>Index</h2>
+<h2>Doctor List</h2>
+<h3>All doctor count: @docsize</h3>
 
 <p>
     <a asp-action="Create">Create New</a>

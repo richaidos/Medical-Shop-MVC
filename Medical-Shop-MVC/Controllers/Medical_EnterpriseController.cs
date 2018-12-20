@@ -23,6 +23,8 @@ namespace Medical_Shop_MVC.Controllers
         // GET: Medical_Enterprise
         public async Task<IActionResult> Index()
         {
+            var medenterprisesize = _context.Medical_Enterprise.Count();
+            ViewBag.medentercount = medenterprisesize;
             return View(await _context.Medical_Enterprise.ToListAsync());
         }
 
