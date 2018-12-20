@@ -2,9 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
+    var medstat = ViewBag.medcount;
 }
 
-<h2>Index</h2>
+<h2>Medicines List</h2>
+<h3>All count: @medstat</h3>
 
 <p>
     <a asp-action="Create">Create New</a>

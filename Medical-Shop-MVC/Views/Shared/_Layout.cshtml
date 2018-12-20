@@ -19,7 +19,6 @@
         <link rel="stylesheet" href="~/css/creative.css" />
         <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.min.css">
 
-
         <!-- Custom styles for this template -->
         <link href="~/css/creative.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -34,8 +33,6 @@
         <link rel="stylesheet" href="~/css/creative.min.css" asp-append-version="true" />
 
 
-
-
     </environment>
 </head>
 <body id="page-top">
@@ -43,8 +40,8 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" asp-area="" asp-controller="Home" asp-action="Index">MEDICAL SHOP</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
-                    data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,7 +51,7 @@
                         <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about">Search</a>
+                        <a class="nav-link js-scroll-trigger" href="/home#about">Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#portfolio">Team</a>
@@ -80,7 +77,6 @@
                             <li class="nav-item">
                                 <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Specializations" asp-action="Index">Specializations</a>
                             </li>
-
                         }
 
                     }
@@ -92,24 +88,39 @@
 
     <header class="masthead text-center text-white d-flex">
         <div class="container my-auto">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h1 class="text-uppercase">
-                        <strong>Created by people for people</strong>
-                    </h1>
-                    <hr>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mx-auto">
+                    <h3 class="text-uppercase">
+                        <strong>Find what you're looking for</strong>
+                    </h3>
+                    <select class="js-scroll-trigger custom-select" id="SearchBy">
+                        <option value="Medecine">Medecine</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Pharmacy">Pharmacy</option>
+                        <option value="MedEnterprise">Med.Enterprise</option>
+                    </select>
+                    <hr class="light my-4">
+
+                    @{ @Html.TextBox("Search", null, new { @class = "btn btn-light btn-xl js-scroll-trigger", placeholder = "Search" })}
+
+
                 </div>
-                <div class="col-lg-8 mx-auto">
-                    <p class="text-faded mb-5">
-                        I swear by Apollo the Healer, by Asclepius, by Hygieia, by Panacea, and by all the gods and goddesses, making them my witnesses, that I will carry out, according to my ability and judgment, this oath and this indenture.</p>
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Try a Search Engine</a>
+                <div class="col-lg-6 mx-auto">
+
+                    <div id="SearchResult" class="row style-1">
+                        <h1 class="text-uppercase">
+                            <strong>Created by people for people</strong>
+                        </h1>
+                    </div>
+
                 </div>
             </div>
         </div>
     </header>
 
-    
+
     <partial name="_CookieConsentPartial" />
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -118,20 +129,74 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 mx-auto text-center">
-                            <h2 class="section-heading">Let's Get In Touch!</h2>
+                            <h1 class="text-uppercase">
+                                <strong>YELLOW DRAGONS</strong>
+                            </h1>
+                            <section class="p-0" id="portfolio">
+                                <div class="container-fluid p-0">
+                                    <div class="row no-gutters popup-gallery">
+                                        <div class="col-lg-4 col-sm-6">
+                                            <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
+                                                <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
+                                                <div class="portfolio-box-caption">
+                                                    <div class="portfolio-box-caption-content">
+                                                        <div class="project-category text-faded">
+                                                            Team Members
+                                                        </div>
+                                                        <div class="project-name">
+                                                            Kassymov Alisher
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-6">
+                                            <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
+                                                <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+                                                <div class="portfolio-box-caption">
+                                                    <div class="portfolio-box-caption-content">
+                                                        <div class="project-category text-faded">
+                                                            Team Members
+                                                        </div>
+                                                        <div class="project-name">
+                                                            Baktaev Aidos
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-6">
+                                            <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
+                                                <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
+                                                <div class="portfolio-box-caption">
+                                                    <div class="portfolio-box-caption-content">
+                                                        <div class="project-category text-faded">
+                                                            Team Members
+                                                        </div>
+                                                        <div class="project-name">
+                                                            Karavina Veronika
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
                             <hr class="my-4">
-                            <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                            <p class="mb-5">"Birds fly, fish swim, animals run. A runner can be caught in a trap, a swimmer - a net, and a flyer - an arrow. But what about the dragon? I don’t know how it races on the wind and how it soars into the sky. Today I saw Lao Jie and I can say that I saw a dragon "</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4 ml-auto text-center">
                             <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
-                            <p>123-456-6789</p>
+                            <p>+7 (777) 80-30-332</p>
                         </div>
                         <div class="col-lg-4 mr-auto text-center">
                             <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
                             <p>
-                                <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+                                <a href="mailto:your-email@your-domain.com">universevoids@gmail.com</a>
                             </p>
                         </div>
                     </div>
@@ -157,6 +222,79 @@
         <!-- Custom scripts for this template -->
         <script src="js/creative.min.js"></script>
 
+        <script>
+            $(document).ready(function () {
+                $("#Search").keyup(function () {
+                    var SearchBy = $("#SearchBy").val();
+                    var SearchValue = $("#Search").val();
+                    var SearchResult = $("#SearchResult");
+                    SearchResult.html("");
+
+                    $.ajax({
+                        type: "post",
+                        url: "/Home/GetSearchingData?SearchBy=" + SearchBy + "&SearchValue=" + SearchValue,
+                        contentType: "html",
+                        success: function (result) {
+                            if (result.length == 0 || result.length < 1) {
+                                if (SearchValue.length < 1) {
+                                    SearchResult.append('<h1 class="text-uppercase"><strong>Created by people for people</strong></h1>');
+                                } else {
+                                    SearchResult.append('<h1 class="text-uppercase"><strong>Sorry, nothing found</strong></h1>');
+                                }
+
+                            } else {
+                                if (SearchBy == "Medecine") {
+                                    console.log(result);
+                                    $.each(result, function (index, value) {
+                                        var des = value.description.substring(0, 25) + "...";
+                                        var Data =
+                                            "<div class='col-lg-12 col-md-12 text-center dd'><h3 class=\"col-md-4\"><a href='/Medicines/Details/" + value.medicineID + "#details'> " + value.name + "</a></h3>" +
+                                            "<h4 class=\"col-md-4\"></p4> <p class=\"text-primary mb-0\">" + des + "</p>" +
+                                            "<h4 class=\"col-md-4\">Price: " + value.price + "</h4></div>";
+                                        SearchResult.append(Data);
+                                    });
+
+                                } else if (SearchBy == "Doctor") {
+                                    $.each(result, function (index, value) {
+                                        var Data =
+                                            "<div class='col-lg-12 col-md-12 text-center dd'><h3 class=\"col-md-4\"><a href='/Doctors/Details/" + value.doctorID + "#details'>" + value.doctorName + " " + value.doctorSurname + "</a></h3>" +
+                                            "<h4 class=\"col-md-6\">" + value.doctorType.specName + "<p class=\"text-muted mb-0\">" + value.doctorEnterprise.medName + "</p> </h4></div>";
+                                        SearchResult.append(Data);
+                                    });
+                                    console.log(result);
+                                } else if (SearchBy == "Pharmacy") {
+                                    $.each(result, function (index, value) {
+                                        var Data =
+                                            "<div class='col-lg-12 col-md-12 text-center dd'><a href='/Pharmacies/Details/" + value.pharmID + "#details'><h3 class=\"col-md-12\">" + value.pharmName + "</h3></a>" +
+                                            "<h4 class=\"col-md-12\"></h4> <p class=\"text-muted mb-0\">" + value.pharmAddress + "</p>" +
+                                            "<h4 class=\"col-md-12\"></h4> <p class=\"text-muted mb-0\">" + value.pharmPhone + "</p>" +
+                                            "<h4 class=\"col-md-12\">Working hours: " + value.time_at + "</h4></div>"
+                                            ;
+                                        SearchResult.append(Data);
+                                    });
+                                    console.log(result);
+                                } else if (SearchBy == "MedEnterprise") {
+                                    $.each(result, function (index, value) {
+                                        var des = value.medDescription.substring(0, 50) + "...";
+                                        var Data =
+                                            "<div class='col-lg-12 col-md-12 text-center dd'><a href='/Medical_Enterprise/Details/" + value.medID + "#details'><h3 class=\"mb-3\">" + value.medName + "</h3></a>" +
+                                            "<p class=\"text-muted mb-0\">" + value.medAddress + "</p>" +
+                                            "<p class=\"text-muted mb-0\">" + des + "</p>" +
+                                            "<h4 class=\"mb-4\">Working hours: " + value.time_at + "</h4></div>"
+                                            ;
+                                        SearchResult.append(Data);
+                                    });
+                                    console.log(result);
+                                }
+
+                            }
+                        }
+
+                    })
+
+                });
+            });
+        </script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
